@@ -1,0 +1,42 @@
+
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .step {
+    font-weight: bold;
+  }
+
+  .content {
+    font-size: 18px;
+    line-height: 1.5;
+
+  }
+
+  .code {
+    margin: 20px;
+  }
+  
+  .blogPost {
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+
+  .blogText{
+    display:flex;
+    align-content:center;
+    max-width: 75vw;
+    background-color: #666;
+  }
+
+  .lightText {
+    color: #666;
+  }
+  
+  

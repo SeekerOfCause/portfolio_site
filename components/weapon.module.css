@@ -1,0 +1,67 @@
+.weapon {
+    position: absolute;
+    background-color: #112d4e;
+    height: 1024px;
+    width: 1422px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .textframe {
+    height: 912px;
+    width: 720.172119140625px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    top: 56px;
+    position: relative;
+  }
+  .imageframe {
+    height: 400px;
+    width: 400px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 160.08px;
+    position: relative;
+  }
+  .titleframe {
+    height: 118px;
+    width: 720px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 0.08px;
+    top: 456px;
+    position: relative;
+  }
+  .descriptionframe {
+    height: 282px;
+    width: 400px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 160.08px;
+    top: 630px;
+    position: relative;
+  }
+  .imageframe2 {
+    background-color: #ffffff;
+    height: 826px;
+    width: 683.827880859375px;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    left: 738.17px;
+    top: 99px;
+    position: relative;
+  }
+  .image2 {
+    height: 826px;
+    width: 683.827880859375px;
+  }
+  
