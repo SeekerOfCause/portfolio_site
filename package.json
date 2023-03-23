@@ -21,6 +21,7 @@
     "react-native-auto-size-text": "^1.1.1",
     "react-remove-scroll": "^2.5.5",
     "remark": "^14.0.2",
-    "remark-html": "^15.0.2"
+    "remark-html": "^15.0.2",
+    "uglify-js": "^3.17.4"
   }
 }
