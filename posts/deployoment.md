@@ -3,15 +3,41 @@ title: "How to Setup a Next.js App on Ubuntu 22.04"
 date: "2023-03-22"
 ---
 
-### How to Setup a Next.js App on Ubuntu 22.04
- 
+# How to Setup a Next.js App on Ubuntu 22.04
+
 ---
 
- In this series of articles, we will walk through the process of setting up a Next.js app on a custom Ubuntu 22.04 server using various tools and technologies. In this first article, we will cover the initial setup steps required to get started with the Next.js app.
+ In this article, we will walk through the process of setting up a Next.js app on a custom Ubuntu 22.04 server using various tools and technologies. In this first article, we will cover the initial setup steps required to get started with the Next.js app.
+
+
+- [How to Setup a Next.js App on Ubuntu 22.04](#how-to-setup-a-nextjs-app-on-ubuntu-2204)
+  - [Setting up the server](#setting-up-the-server)
+  - [Creating a Next.js app](#creating-a-nextjs-app)
+    - [Step 1: Installing Node.js and npm](#step-1-installing-nodejs-and-npm)
+    - [Step 2: Creating a directory for the site and setting up the Next.js app with npx create-next-app](#step-2-creating-a-directory-for-the-site-and-setting-up-the-nextjs-app-with-npx-create-next-app)
+    - [Step 3: Installing dependencies with npm install](#step-3-installing-dependencies-with-npm-install)
+    - [Step 4: Build Next App](#step-4-build-next-app)
+    - [Step 5: Starting Next Server](#step-5-starting-next-server)
+    - [Step 6: Browsing to Next Page](#step-6-browsing-to-next-page)
+  - [Setting Up PM2 and Nginx for Next.js Website Deployment](#setting-up-pm2-and-nginx-for-nextjs-website-deployment)
+    - [Step 1: Installing pm2](#step-1-installing-pm2)
+    - [Step 2: Install Nginx](#step-2-install-nginx)
+    - [Step 3: Installing ufw](#step-3-installing-ufw)
+  - [Setting Up SSL Certs with Certbot on Ubuntu 22.04](#setting-up-ssl-certs-with-certbot-on-ubuntu-2204)
+    - [Step 1: Install Certbot](#step-1-install-certbot)
+    - [Step 2: Create certs fot the Next.js App](#step-2-create-certs-fot-the-nextjs-app)
+    - [Step 3: Manually Creating and Setting Certs with Certbot](#step-3-manually-creating-and-setting-certs-with-certbot)
+    - [Step 4: Verifying Certbot Status and Testing Autorenew](#step-4-verifying-certbot-status-and-testing-autorenew)
+  - [Setting up Github on Ubuntu for Deploying a Next.js Website](#setting-up-github-on-ubuntu-for-deploying-a-nextjs-website)
+    - [Step 1: Log into Github and create a repository](#step-1-log-into-github-and-create-a-repository)
+    - [Step 2: Initialize Git in your app directory](#step-2-initialize-git-in-your-app-directory)
+    - [Step 3: Adding all untracked files to the commit](#step-3-adding-all-untracked-files-to-the-commit)
+  - [Step 4: Setting up an ssh connection to the repository](#step-4-setting-up-an-ssh-connection-to-the-repository)
+    - [Step 5: Push your Git repository to Github](#step-5-push-your-git-repository-to-github)
 
 
 
-##      Setting up the server
+## Setting up the server
 
  To get started, we need to set up a Google Cloud VM with Ubuntu 22.04. There are many ways to do this, but we recommend following the official [walkthrough](https://cloud.google.com/compute/docs/instances/create-start-instance) provided by Google. 
  
@@ -20,20 +46,16 @@ date: "2023-03-22"
 
 ## Creating a Next.js app
 
-### Step 1:
+### Step 1: Installing Node.js and npm
 
-**Installing Node.js and npm.**
-
- Once you have set up your VM, you need to install Node.js and npm on Ubuntu 22.04. You can do this by running the following commands:
+  Once you have set up your VM, you need to install Node.js and npm on Ubuntu 22.04. You can do this by running the following commands:
 
   >`sudo apt-get update`
   >`sudo apt-get install node.js`
   >`sudo apt-get install npm`
 
 
-### Step 2:
-
- **Creating a directory for the site and setting up the Next.js app with npx create-next-app**
+### Step 2: Creating a directory for the site and setting up the Next.js app with npx create-next-app
 
 
  Next, we need to create a directory for the site and set up the Next.js app. You can do this by running the following commands:
@@ -45,9 +67,7 @@ date: "2023-03-22"
  *Make sure to replace `[USER]` with your username and set the project name to "test-app".*
 
 
-### Step 3:
-
- **Installing dependencies for the Next.js app with npm install**
+### Step 3: Installing dependencies with npm install
 
  Once the Next.js app has been set up, we need to install its dependencies. You can do this by running the following command:
 
@@ -57,9 +77,7 @@ date: "2023-03-22"
  This will install all the dependencies required to run the Next.js app.
 
 
-### Step 4:
-
-**Build Next App**
+### Step 4: Build Next App
 
  Once the dependencies have been installed, we can build a production version of the Next.js app. You can do this by running the following command:
 
@@ -68,9 +86,7 @@ date: "2023-03-22"
  This will generate a production build of the Next.js app.
 
 
-### Step 5:
-
-**Starting Next Server**
+### Step 5: Starting Next Server
  
  Now that we have built the production version of the Next.js app, we can start the app server. You can do this by  running the following command:
 
@@ -81,9 +97,7 @@ date: "2023-03-22"
  > `ready - started server on 0.0.0.0:3000, url: http://localhost:3000`
 
     
-### Step 6:
-
-**Browsing to Next Page**
+### Step 6: Browsing to Next Page
 
  Finally, we can test the Next.js app on the local server. To do this, open your web browser and navigate to `https://localhost:3000` and you should see the initail Next.js landing page.
 
@@ -98,9 +112,7 @@ date: "2023-03-22"
 
 
 
-### Step 1:
-
- **Installing pm2**
+### Step 1: Installing pm2
 
  Open a terminal and run the command:
 
@@ -113,9 +125,7 @@ date: "2023-03-22"
  Verify that our website is up and running by browsing to localhost:3000.
 
 
-### Step 2:
-
-**Install Nginx**
+### Step 2: Install Nginx
 
 
  Install Nginx on our server by running the command: 
@@ -163,10 +173,7 @@ date: "2023-03-22"
 
   >`sudo systemctl reload nginx`
 
-### Step 3:
-
- 
- **Installing ufw**
+### Step 3: Installing ufw
 
 
  Install UFW by running the command:
@@ -194,6 +201,8 @@ date: "2023-03-22"
 
  By completing the steps outlined in this article, we have installed and configured PM2 and Nginx to work with our Next.js website, and set up HTTPS and firewall rules to secure our site.
 
+---
+
 ## Setting Up SSL Certs with Certbot on Ubuntu 22.04
 
  SSL certificates are an important component of securing your website. They ensure that data exchanged between your website and your users is encrypted and protected from malicious attacks.
@@ -203,9 +212,7 @@ date: "2023-03-22"
  Certbot is a free, open-source software tool that automates the process of obtaining and installing SSL certificates. To install Certbot on Ubuntu 22.04, follow these steps:
 
 
-### Step 1:
-
- **Install Certbot**
+### Step 1: Install Certbot
 
 
  Open a terminal window.
@@ -225,9 +232,7 @@ date: "2023-03-22"
 
 
 
-#### Step 2:
-
-**Create certs fot the Next.js App**
+### Step 2: Create certs fot the Next.js App
 
  Type the following command:
 
@@ -239,9 +244,7 @@ date: "2023-03-22"
 
  Certbot will obtain and install the SSL certificates for you.
 
-### Step 3:
- 
- **Manually Creating and Setting Certs with Certbot**
+### Step 3: Manually Creating and Setting Certs with Certbot
 
  In some cases, you may need to manually create and set SSL certificates with Certbot. Follow these steps to manually  create and set SSL certificates with Certbot:
 
@@ -259,9 +262,7 @@ date: "2023-03-22"
 
  Install the SSL certificates on your webserver.
 
-### Step 4: 
-
-  **Verifying Certbot Status and Testing Autorenew**
+### Step 4: Verifying Certbot Status and Testing Autorenew
 
  To verify that Certbot is working correctly and that your SSL certificates are set up correctly, follow these  steps:
 
@@ -283,9 +284,7 @@ date: "2023-03-22"
 
 Github is a popular platform that provides a version control system for your codebase. By using Github, you can manage your codebase more efficiently and collaboratively with other developers.
 
-### Step 1:
-
- **Log into Github and create a repository**
+### Step 1: Log into Github and create a repository
 
  The first step is to log into Github and create a repository for your app. 
  
@@ -295,9 +294,7 @@ Github is a popular platform that provides a version control system for your cod
 
 
 
-### Step 2:
-
-  **Initialize Git in your app directory**
+### Step 2: Initialize Git in your app directory
 
  After creating the repository, the next step is to initialize Git in your app directory. To do this, navigate to  your app directory using the terminal with the following command:
 
@@ -307,9 +304,7 @@ Github is a popular platform that provides a version control system for your cod
 
   >`git init`
 
-### Step 3:
-
-  **Adding all untracked files to the commit**
+### Step 3: Adding all untracked files to the commit
 
 
  After initializing Git, you can check the status of your files with the following command:
@@ -324,9 +319,7 @@ Github is a popular platform that provides a version control system for your cod
 
   >`git commit -m "[Your commit message here]"`
 
-## Step 4:
-
-  **Setting up an ssh connection to the repository**
+## Step 4: Setting up an ssh connection to the repository
 
  To set up an SSH connection with Github, you need to create an SSH key in Ubuntu. To do this, use the following command:
 
@@ -360,9 +353,7 @@ Github is a popular platform that provides a version control system for your cod
 
  This should display a success message.
 
-### Step 5: 
-
-  **Push your Git repository to Github**
+### Step 5: Push your Git repository to Github
 
  After setting up the SSH connection, you can push your Git repository to Github. Use the following command to push your repository:
 
